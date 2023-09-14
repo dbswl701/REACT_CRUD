@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Lists = ({datas, handleClear}) => {
+const Lists = ({datas, handleClear, handleDelete}) => {
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       {datas.map((data) => (
@@ -8,7 +8,7 @@ const Lists = ({datas, handleClear}) => {
           <p>{data.title}</p>
           <p>{data.price}</p>
           <div>
-            <button>x</button>
+            <button onClick={() => handleDelete(data.id)}>x</button>
             <button>o</button>
           </div>
         </div>

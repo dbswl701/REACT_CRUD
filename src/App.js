@@ -46,12 +46,17 @@ function App() {
     setDatas([]);
   }
 
+  const handleDelete = (id) => {
+    const newData = datas.filter((data) => data.id !== id);
+    setDatas(newData);
+  }
+
   return (
     <div>
       <h1>예산 계산기</h1>
       <div style={{backgroundColor: 'white'}}>
         <Form handleInput={handleInput} input={input} handleSubmit={handleSubmit} />
-        <Lists datas={datas} handleClear={handleClear} />
+        <Lists datas={datas} handleClear={handleClear} handleDelete={handleDelete} />
       </div>
     </div>
   );
