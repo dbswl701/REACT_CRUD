@@ -77,7 +77,7 @@ function App() {
   return (
     <div>
       <h1>예산 계산기</h1>
-      <div style={{backgroundColor: 'white'}}>
+      <div style={{backgroundColor: 'white', padding: '20px'}}>
         <Form handleInput={handleInput} input={input} handleSubmit={handleSubmit} isModify={isModify} handleModifySubmit={handleModifySubmit} />
         <Lists datas={datas} handleClear={handleClear} handleDelete={handleDelete} handleModify={handleModify} />
       </div>
