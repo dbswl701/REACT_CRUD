@@ -16,11 +16,14 @@ function App() {
       price: '1400'
     }
   ]);
+
   const [input, setInput] = useState({
     id: '',
     title: '',
     price: ''
   });
+
+  const [isModify, setIsModify] = useState(false);
 
   // handleInput, handleSubmit은 form안에서만 쓰이는데, Form으로 이동시켜주는게 맞을까? 보통 함수들은 App.js에 많이 빼놓던데...
   const handleInput = (e) => {
@@ -51,12 +54,32 @@ function App() {
     setDatas(newData);
   }
 
+  const handleModify = (data) => {
+    // 수정 시 - form 내용 변경, 제출 버튼 수정 버튼으로 -> 수정중인지에 대한 상태 저장 필요
+    setIsModify(true);
+    setInput(data);
+  }
+
+  const handleModifySubmit = (e, modifyValue) => {
+    e.preventDefault();
+    setDatas(datas.map((data) => {
+      if (data.id === modifyValue.id) return modifyValue;
+      return data;
+    }));
+    setInput({  
+      id: '',  
+      title: '',
+      price: ''
+    });
+    setIsModify(false);
+  }
+
   return (
     <div>
       <h1>예산 계산기</h1>
       <div style={{backgroundColor: 'white'}}>
-        <Form handleInput={handleInput} input={input} handleSubmit={handleSubmit} />
-        <Lists datas={datas} handleClear={handleClear} handleDelete={handleDelete} />
+        <Form handleInput={handleInput} input={input} handleSubmit={handleSubmit} isModify={isModify} handleModifySubmit={handleModifySubmit} />
+        <Lists datas={datas} handleClear={handleClear} handleDelete={handleDelete} handleModify={handleModify} />
       </div>
     </div>
   );

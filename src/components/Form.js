@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = ({handleInput, input, handleSubmit}) => {
+const Form = ({handleInput, input, handleSubmit, isModify, handleModifySubmit}) => {
   return (
     <div>
       <form style={{display: 'flex'}} onSubmit={handleSubmit}>
@@ -13,7 +13,10 @@ const Form = ({handleInput, input, handleSubmit}) => {
           <input type="number" name="price" onChange={handleInput} value={input.price} />
         </div>
       </form>
-      <button type="submit" onClick={handleSubmit}>제출</button>
+      {isModify ? 
+        <button type="submit" onClick={(e) => handleModifySubmit(e, input)}>수정</button>
+        : <button type="submit" onClick={handleSubmit}>제출</button>}
+      
     </div>
   )
 }
