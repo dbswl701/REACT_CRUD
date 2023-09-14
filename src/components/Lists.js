@@ -1,17 +1,11 @@
 import React from 'react'
+import List from './List';
 
 const Lists = ({datas, handleClear, handleDelete, handleModify}) => {
   return (
     <div style={{display: 'flex', flexDirection: 'column'}}>
       {datas.map((data) => (
-        <div key={data.id} style={{display: 'flex', flexDirection: 'row'}}>
-          <p>{data.title}</p>
-          <p>{data.price}</p>
-          <div>
-            <button onClick={() => handleDelete(data.id)}>x</button>
-            <button onClick={() => handleModify(data)}>o</button>
-          </div>
-        </div>
+        <List key={data.id} data={data} handleDelete={handleDelete} handleModify={handleModify} />
       ))}
       <button onClick={handleClear}>목록 지우기</button>
     </div>
